@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.SkullType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -174,7 +175,7 @@ public class Main extends JavaPlugin implements Listener {
 					/**
 					 * Head Player (Target)
 					 */
-					ItemStack PlayerHead = new ItemStack(397, 1, (short) 3);
+					ItemStack PlayerHead = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
 					ItemMeta PlayerHead_Meta  = PlayerHead.getItemMeta();
 					PlayerHead_Meta.setDisplayName(TextFormatter(chat.getPlayerPrefix("null", isPlayerTarget.getName()) + isPlayerTarget.getName()));
 					PlayerHead.setItemMeta(PlayerHead_Meta);
@@ -184,7 +185,11 @@ public class Main extends JavaPlugin implements Listener {
 					 */
 					ItemStack Emerald = new ItemStack(Material.EMERALD);
 					ItemMeta Emerald_Meta = Emerald.getItemMeta();
-					Emerald_Meta.setDisplayName(TextFormatter("&cMoney : &7$") + economy.getBalance(isPlayerTarget.getName()));
+					
+//					DecimalFormat dformat = new DecimalFormat();
+//					dformat.setDecimalFractionDigits(2);
+					
+					Emerald_Meta.setDisplayName(TextFormatter("&cMoney : &7$") + String.format("%.2f", economy.getBalance(isPlayerTarget.getName())));
 					Emerald.setItemMeta(Emerald_Meta);
 					
 					/**
